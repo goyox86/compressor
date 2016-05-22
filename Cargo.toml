@@ -1,0 +1,6 @@
+[package]
+name = "str_encoder"
+version = "0.1.0"
+authors = ["Jose Narvaez"]
+
+[dependencies]
