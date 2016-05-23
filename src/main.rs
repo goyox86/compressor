@@ -23,8 +23,6 @@ pub fn compress(source: &str) -> String {
 
     let mut prev_char = source.chars().nth(0).unwrap();
     for cur_char in source.chars().skip(1) {
-        println!("{:?} {:?} {:?}", prev_char, cur_char, count);
-
         if prev_char == cur_char {
             count += 1;
         } else {
