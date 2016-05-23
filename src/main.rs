@@ -21,21 +21,20 @@ pub fn compress(source: &str) -> String {
     let mut count = 0;
     let mut compressed = String::new();
 
-    for i in 0..source.chars().count() {
-        let cur_char = source.chars().nth(i).unwrap();
-        match source.chars().nth(i + 1) {
-            Some(next_char) => {
-                if cur_char == next_char {
-                    count += 1;
-                } else {
-                    count += 1;
-                    compressed.push(cur_char);
-                    compressed.push_str(&count.to_string());
-                    count = 0;
-                }
-            },
-            None => { }
+    let mut prev_char = source.chars().nth(0).unwrap();
+    for cur_char in source.chars().skip(1) {
+        println!("{:?} {:?} {:?}", prev_char, cur_char, count);
+
+        if prev_char == cur_char {
+            count += 1;
+        } else {
+            count += 1;
+            compressed.push(prev_char);
+            compressed.push_str(&count.to_string());
+            count = 0;
         }
+
+        prev_char = cur_char;
     }
 
     if source.len() < compressed.len() {
