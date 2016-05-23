@@ -21,7 +21,7 @@ pub fn compress(source: &str) -> String {
     let mut count = 0;
     let mut compressed = String::new();
 
-    for i in 0..source.len() {
+    for i in 0..source.chars().count() {
         let cur_char = source.chars().nth(i).unwrap();
         match source.chars().nth(i + 1) {
             Some(next_char) => {
@@ -65,5 +65,11 @@ mod tests {
     fn test_returns_orig_if_compressed_is_bigger() {
         let input = "abcdefghijk\n";
         assert_eq!(compress(input), input.to_string());
+    }
+
+    #[test]
+    fn test_multibyte_chars() {
+        let input = "真棒棒棒棒棒棒棒\n";
+        assert_eq!(compress(input), "真1棒7".to_string());
     }
 }
